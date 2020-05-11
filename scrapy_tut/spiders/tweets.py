@@ -38,6 +38,6 @@ class TweetsSpider(scrapy.Spider):
             item['links'] += response.css('a::attr(href)').getall()
             yield item
 
-        request = scrapy.Request(f'https://twitter.com{url}', iframe_parser)
+        request = scrapy.Request('https://twitter.com{url}'.format(url=url), iframe_parser)
         request.meta['item'] = parent_item
         return request
